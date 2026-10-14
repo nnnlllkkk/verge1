@@ -2,9 +2,9 @@ name: Build and Push Frontend Image
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: ["main"]
   pull_request:
-  workflow_dispatch:   # <--- вот эта строчка включает кнопку ручного запуска
+  workflow_dispatch:
 
 jobs:
   build:
