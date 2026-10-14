@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Verge | Оформление заказа</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="p-6 border-b border-gray-800"><a href="cart.html" class="text-gray-400 hover:text-white">&larr; Назад в корзину</a></header>
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-lg">
+        <h1 class="text-3xl font-black uppercase mb-6">Оформление заказа</h1>
+        <form onsubmit="event.preventDefault(); localStorage.removeItem('verge_cart'); showToast('Заказ успешно оформлен!'); setTimeout(() => location.href='profile.html', 1500);" class="bg-[#1e1e1e] p-8 rounded-3xl space-y-4">
+            <div>
+                <label class="block text-sm text-gray-400 mb-2">Адрес пункта выдачи</label>
+                <input type="text" required class="w-full bg-[#121212] border border-gray-800 rounded-xl p-4 text-white focus:border-[#ccff00] outline-none" placeholder="г. Новосибирск, ул. Ленина, 12">
+            </div>
+            <div>
+                <label class="block text-sm text-gray-400 mb-2">Телефон</label>
+                <input type="tel" required class="w-full bg-[#121212] border border-gray-800 rounded-xl p-4 text-white focus:border-[#ccff00] outline-none" placeholder="+7 (999) 000-00-00">
+            </div>
+            <button type="submit" class="w-full bg-[#ccff00] text-black font-bold py-4 rounded-xl hover:bg-[#b3e600] transition-colors mt-4">Подтвердить заказ</button>
+        </form>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

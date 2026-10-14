@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Verge | Каталог</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="p-6 border-b border-gray-800 flex justify-between items-center bg-[#121212]/90 sticky top-0 z-50">
+        <a href="index.html" class="text-3xl font-black uppercase">Verge<span class="text-[#ccff00]">.</span></a>
+        <nav class="space-x-6 text-sm font-semibold uppercase">
+            <a href="catalog.html" class="text-[#ccff00]">Каталог</a>
+            <a href="lookbook.html" class="hover:text-[#ccff00]">Lookbook</a>
+            <a href="cart.html" class="hover:text-[#ccff00]">Корзина</a>
+        </nav>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-black uppercase mb-8">Каталог изделий</h1>
+        <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
+    </main>
+    <script src="js/app.js"></script>
+    <script>
+        const grid = document.getElementById('catalog-grid');
+        grid.innerHTML = catalogData.map(item => `
+            <div class="bg-[#1e1e1e] rounded-3xl overflow-hidden group cursor-pointer flex flex-col transition-transform hover:-translate-y-1" onclick="location.href='product.html?id=${item.id}'">
+                <div class="h-80 overflow-hidden"><img src="${item.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <span class="text-xs text-[#ccff00] uppercase font-bold mb-2">${item.category}</span>
+                    <h3 class="font-bold text-xl mb-4">${item.name}</h3>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="font-black text-2xl">${formatPrice(item.price)}</span>
+                        <button onclick="event.stopPropagation(); addToCart(${item.id})" class="bg-white/10 hover:bg-[#ccff00] hover:text-black p-3 rounded-full transition-colors">＋</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    </script>
+    <script src="js/app.js"></script>
+</html>

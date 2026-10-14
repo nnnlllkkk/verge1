@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Verge | Умный подбор</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="p-6 border-b border-gray-800"><a href="index.html" class="text-gray-400 hover:text-white">&larr; На главную</a></header>
+    <main class="flex-grow container mx-auto px-4 py-16 text-center max-w-xl">
+        <h1 class="text-4xl font-black uppercase mb-4">Умный подбор размера</h1>
+        <p class="text-gray-400 mb-8">Алгоритм автоматически сопоставит ваши параметры с размерной сеткой бренда.</p>
+        <button onclick="showToast('Параметры успешно учтены!')" class="bg-[#ccff00] text-black font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform">Подобрать размер</button>
+    </main>
+    <script src="js/app.js"></script>
+    <script src="js/smart.js"></script>
+</body>
+</html>

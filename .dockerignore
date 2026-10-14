@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+.git/
+.gitignore
+*.md
+.DS_Store
+=======
+.git/
+.gitignore
+*.md
+.DS_Store
+>>>>>>> 960c1f20f140383cdcaf56119a5d336985115bbc

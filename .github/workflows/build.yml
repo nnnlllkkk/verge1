@@ -1,0 +1,43 @@
+name: Build and Push Frontend Image
+
+on:
+  push:
+<<<<<<< HEAD
+    branches: ["main"]
+  pull_request:
+=======
+    branches: ["main", "master"]
+  pull_request:
+  workflow_dispatch:   # <--- вот эта строчка включает кнопку ручного запуска
+>>>>>>> 960c1f20f140383cdcaf56119a5d336985115bbc
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+<<<<<<< HEAD
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+=======
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+>>>>>>> 960c1f20f140383cdcaf56119a5d336985115bbc

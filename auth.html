@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Verge | Вход</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex flex-col min-h-screen justify-center items-center px-4">
+    <form onsubmit="event.preventDefault(); showToast('Успешный вход!'); setTimeout(() => location.href='profile.html', 1200);" class="bg-[#1e1e1e] w-full max-w-md p-8 md:p-12 rounded-3xl">
+        <h2 class="text-3xl font-black mb-6 uppercase">Вход</h2>
+        <input type="email" placeholder="Email" required class="w-full bg-[#121212] border border-gray-800 rounded-xl p-4 mb-4 text-white focus:border-[#ccff00] outline-none">
+        <input type="password" placeholder="Пароль" required class="w-full bg-[#121212] border border-gray-800 rounded-xl p-4 mb-6 text-white focus:border-[#ccff00] outline-none">
+        <button type="submit" class="w-full bg-[#ccff00] text-black font-bold py-4 rounded-xl hover:bg-[#b3e600] transition-colors">Войти</button>
+    </form>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
