@@ -9,7 +9,7 @@ const config = {
     options: {
         encrypt: false,
         trustServerCertificate: true,
-        instanceName: 'SQLEXPRESS' // Указываем имя экземпляра явно для Express-версии
+        instanceName: 'SQLEXPRESS' 
     }
 };
 

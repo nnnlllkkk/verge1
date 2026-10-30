@@ -9,12 +9,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const publicPath = path.join(__dirname, '..', 'public');
+// Защита API (требование по SEO)
+app.use('/api', (req, res, next) => {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    next();
+});
 
-// Раздача статики
+const publicPath = path.join(__dirname, '..', 'public');
 app.use(express.static(publicPath));
 
-// Правильная конфигурация для именованного экземпляра SQLEXPRESS в Node.js
 const dbConfig = {
     user: 'sa',
     password: '12345',
@@ -23,7 +26,7 @@ const dbConfig = {
     options: {
         encrypt: false,
         trustServerCertificate: true,
-        instanceName: 'SQLEXPRESS' // Вот эта строчка заставляет драйвер найти правильный порт через Browser
+        instanceName: 'SQLEXPRESS'
     }
 };
 
@@ -37,7 +40,6 @@ async function connectDB() {
 }
 connectDB();
 
-// API Endpoints
 app.get('/api/products', async (req, res) => {
     try {
         const result = await sql.query('SELECT * FROM Products');
@@ -47,7 +49,7 @@ app.get('/api/products', async (req, res) => {
     }
 });
 
-// Главная
+// Главная страница (возвращаем ваш поиск файла с "home")
 app.get('/', (req, res) => {
     if (!fs.existsSync(publicPath)) {
         return res.status(404).send('Папка public не найдена!');
@@ -56,20 +58,18 @@ app.get('/', (req, res) => {
     const homeFile = files.find(f => f.toLowerCase().includes('01home') || f.toLowerCase().includes('home')) || files[0];
     
     if (homeFile) {
+        console.println && console.log(`Отдаем файл главной страницы: ${homeFile}`);
         res.sendFile(path.join(publicPath, homeFile));
     } else {
         res.status(404).send('Главная страница не найдена в папке public.');
     }
 });
 
-// УМНЫЙ РОУТЕР: Находит файл, даже если в названии запятая или опечатка
 app.get('/:page', (req, res) => {
     const requested = req.params.page.replace('.html', '').toLowerCase();
-    
     if (!fs.existsSync(publicPath)) {
         return res.status(404).send('Папка public не найдена!');
     }
-
     const files = fs.readdirSync(publicPath);
     const matchedFile = files.find(f => f.toLowerCase().replace(',', '.').includes(requested));
 
@@ -82,5 +82,5 @@ app.get('/:page', (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(` Сервер запущен на http://localhost:${PORT}`);
+    console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
