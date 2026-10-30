@@ -4,7 +4,6 @@
 -- USE VergeDB;
 -- GO
 
--- Безопасное удаление таблиц в обратном порядке (чтобы избежать конфликтов внешних ключей при пересоздании)
 IF OBJECT_ID('dbo.lookbook_items', 'U') IS NOT NULL DROP TABLE dbo.lookbook_items;
 IF OBJECT_ID('dbo.lookbooks', 'U') IS NOT NULL DROP TABLE dbo.lookbooks;
 IF OBJECT_ID('dbo.returns', 'U') IS NOT NULL DROP TABLE dbo.returns;
